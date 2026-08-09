@@ -1,6 +1,6 @@
 {
   description = "Configured Neovim package built with nix-wrapper-modules";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
   inputs.wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
   inputs.wrappers.inputs.nixpkgs.follows = "nixpkgs";
   # Keep these plugins independent from the nixpkgs update cycle.
