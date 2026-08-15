@@ -51,6 +51,20 @@
       }
     );
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    devShells = forAllSystems (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      default = pkgs.mkShell {
+        packages = with pkgs; [
+          alejandra
+          stylua
+          luajit
+          lua-language-server
+          nixd
+          self.packages.${system}.neovim
+        ];
+      };
+    });
     # `wrappers.neovim.enable = true`
     nixosModules = {
       default = self.nixosModules.neovim;
