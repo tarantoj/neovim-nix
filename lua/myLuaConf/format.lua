@@ -3,7 +3,7 @@ require('lze').load {
     'conform.nvim',
     auto_enable = true,
     -- cmd = { "" },
-    -- event = "",
+    event = { 'BufWritePre' },
     -- ft = "",
     keys = {
       { '<leader>FF', desc = '[F]ormat [F]ile' },
