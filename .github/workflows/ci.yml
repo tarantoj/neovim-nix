@@ -29,7 +29,7 @@ jobs:
         run: nix build .
 
       - name: Format Nix files
-        run: nix develop --command alejandra --check .
+        run: nix fmt -- --check .
 
       - name: Format Lua files
         run: nix develop --command stylua --check init.lua lua after

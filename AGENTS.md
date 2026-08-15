@@ -22,16 +22,16 @@ Runtime deps (linters/formatters/LSP servers) must be added to `nix/runtime.nix`
 ```bash
 nix flake check
 nix build .
-nix develop --command alejandra --check .       # nix formatting
+nix fmt -- --check .                       # nix formatting (uses flake formatter)
 nix develop --command stylua --check init.lua lua after   # lua formatting
 nix develop --command nvim --headless -c 'qa!'  # startup smoke test
 ```
 
-CI (`.github/workflows/ci.yml`) runs all of the above on ubuntu-latest + macos-14 for every push/PR. The devshell (`nix develop` / `.envrc` via direnv) provides alejandra, stylua, luajit, lua-language-server, nixd, and neovim.
+CI (`.github/workflows/ci.yml`) runs all of the above on ubuntu-latest + macos-latest for every push/PR. The devshell (`nix develop` / `.envrc` via direnv) provides alejandra, stylua, luajit, lua-language-server, nixd, and neovim.
 
 ## Gotchas
 
 - **The packaged config only includes git-tracked files.** `settings.config_directory = ../.` copies the git index, not the working tree. New files (e.g. a new `plugins/*.lua`) are silently absent from `nix build`/`nix run` output until `git add`-ed. Staging (not committing) is enough.
 - `nix build .` creates an untracked `result` symlink in the repo root; remove it before finishing.
 - Plugins with `event = 'DeferredUIEnter'` (gitsigns, which-key, fidget, etc.) won't load at startup in a headless run — expected, not a regression.
-- In this session the CI format checks only pass if `alejandra`/`stylua` are clean, so run them before pushing.
+- In this session the CI format checks only pass if `nix fmt`/`stylua` are clean, so run them before pushing.
