@@ -170,7 +170,7 @@ require('lze').load {
       },
     },
   },
-  { 'devenv', lsp = { cmd = { 'devenv', 'lsp' }, filetypes = { 'nix' }, root_markers = { 'devenv.nix', '.git' } } },
+  { 'devenv', lsp = { cmd = { 'devenv', 'lsp' }, filetypes = { 'nix' }, root_markers = { 'devenv.nix' } } },
   {
     'nixd',
     lsp = {
