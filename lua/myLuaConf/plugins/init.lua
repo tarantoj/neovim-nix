@@ -58,6 +58,7 @@ require('lze').load {
   { import = 'myLuaConf.plugins.ai' },
   { import = 'myLuaConf.plugins.ui' },
   { import = 'myLuaConf.plugins.git' },
+  { import = 'myLuaConf.plugins.mini' },
   { import = 'myLuaConf.plugins.statusline' },
   { import = 'myLuaConf.plugins.utility' },
 }

@@ -57,37 +57,6 @@ return {
     end,
   },
   {
-    'nvim-ts-context-commentstring',
-    auto_enable = true,
-    dep_of = 'comment.nvim',
-  },
-  {
-    'comment.nvim',
-    auto_enable = true,
-    event = 'DeferredUIEnter',
-    after = function(_)
-      require('Comment').setup {
-        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-      }
-    end,
-  },
-  {
-    'indent-blankline.nvim',
-    auto_enable = true,
-    event = 'DeferredUIEnter',
-    after = function(_)
-      require('ibl').setup()
-    end,
-  },
-  {
-    'nvim-surround',
-    auto_enable = true,
-    event = 'DeferredUIEnter',
-    after = function(_)
-      require('nvim-surround').setup()
-    end,
-  },
-  {
     'which-key.nvim',
     auto_enable = true,
     event = 'DeferredUIEnter',

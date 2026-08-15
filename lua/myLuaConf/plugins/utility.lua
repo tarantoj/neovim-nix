@@ -13,14 +13,6 @@ return {
     end,
   },
   {
-    'nvim-autopairs',
-    auto_enable = true,
-    event = 'InsertEnter',
-    after = function(_)
-      require('nvim-autopairs').setup()
-    end,
-  },
-  {
     'undotree',
     auto_enable = true,
     cmd = { 'UndotreeToggle', 'UndotreeHide', 'UndotreeShow', 'UndotreeFocus', 'UndotreePersistUndo' },

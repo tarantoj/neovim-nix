@@ -35,10 +35,7 @@ in {
       vimPlugins.nvim-notify
       vimPlugins.oil-nvim
       vimPlugins.trouble-nvim
-      vimPlugins.nvim-web-devicons
       vimPlugins.SchemaStore-nvim
-      vimPlugins.neo-tree-nvim
-      vimPlugins.image-nvim
     ];
 
     colorscheme = vimPlugins.tokyonight-nvim;
@@ -47,8 +44,6 @@ in {
       lazy = true;
       data = [
         vimPlugins.nvim-lspconfig
-        vimPlugins.nvim-surround
-        vimPlugins.nvim-autopairs
         vimPlugins.persistence-nvim
         vimPlugins.todo-comments-nvim
         vimPlugins.diffview-nvim
@@ -59,10 +54,9 @@ in {
         vimPlugins.blink-compat
         vimPlugins.cmp-cmdline
         vimPlugins.colorful-menu-nvim
-        vimPlugins.lualine-nvim
+        vimPlugins.fidget-nvim
         vimPlugins.gitsigns-nvim
         vimPlugins.which-key-nvim
-        vimPlugins.fidget-nvim
         vimPlugins.nvim-lint
         vimPlugins.conform-nvim
         vimPlugins.nvim-treesitter-textobjects
@@ -70,9 +64,6 @@ in {
         vimPlugins.lazydev-nvim
         vimPlugins.markdown-preview-nvim
         vimPlugins.undotree
-        vimPlugins.nvim-ts-context-commentstring
-        vimPlugins.comment-nvim
-        vimPlugins.indent-blankline-nvim
         vimPlugins.neogen
         vimPlugins.neotest
         vimPlugins.neotest-vitest
@@ -89,6 +80,7 @@ in {
         vimPlugins.luasnip
         vimPlugins.friendly-snippets
         vimPlugins.blink-cmp-git
+        vimPlugins.mini-nvim
         vimPlugins.nvim-dap
         vimPlugins.nvim-dap-ui
         vimPlugins.nvim-dap-virtual-text
