@@ -11,11 +11,16 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-14]
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check Nix flake inputs
+        uses: DeterminateSystems/flake-checker-action@main
+
       - name: Install Nix
-        uses: determinate-nix/setup-nix@v4
+        uses: DeterminateSystems/determinate-nix-action@v3
 
       - name: Check flake
         run: nix flake check
