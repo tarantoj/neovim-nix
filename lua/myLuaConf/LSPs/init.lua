@@ -35,7 +35,7 @@ require('lze').load {
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
         callback = function(ev)
-          require('myLuaConf.LSPs.on_attach')({}, ev.buf)
+          require('myLuaConf.LSPs.on_attach')(vim.lsp.get_client_by_id(ev.data.client_id), ev.buf)
         end,
       })
       -- vim.lsp.config('*', {

@@ -1,4 +1,4 @@
-return function(_, bufnr)
+return function(client, bufnr)
   -- we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
 
@@ -49,4 +49,13 @@ return function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+
+  -- Enable inlay hints by default when the server supports them
+  if client and client:supports_method('textDocument/inlayHint', bufnr) then
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+  end
+
+  nmap('<leader>th', function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = bufnr })
+  end, '[T]oggle Inlay [H]ints')
 end
