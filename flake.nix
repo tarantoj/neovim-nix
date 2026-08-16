@@ -79,6 +79,34 @@
           }: {
             opencode.enable = true;
             opencode.rules = ./AGENTS.md;
+            # Configure the Lua LSP (lua-ls) so editing lua/myLuaConf/*.lua in opencode
+            # gets the same type info as neovim's lua_ls + lazydev setup:
+            # - LuaJIT runtime, vim global, no missing-fields noise, telemetry off
+            # - workspace.library mirrors lazydev's `path = config_dir .. '/lua'`
+            #   plus the neovim runtime for vim.* completions
+            opencode.settings.lsp = {
+              "lua-ls" = {
+                command = ["lua-language-server"];
+                initialization = {
+                  Lua = {
+                    runtime = {version = "LuaJIT";};
+                    formatters = {ignoreComments = true;};
+                    signatureHelp = {enabled = true;};
+                    diagnostics = {
+                      globals = ["vim"];
+                      disable = ["missing-fields"];
+                    };
+                    telemetry = {enabled = false;};
+                    workspace = {
+                      library = [
+                        "\${workspaceFolder}/lua"
+                        "${pkgs.neovim-unwrapped}/share/nvim/runtime/lua"
+                      ];
+                    };
+                  };
+                };
+              };
+            };
             opencode.commands = {
               test = ''
                 ---description: Run the full test suite via git-hooks
