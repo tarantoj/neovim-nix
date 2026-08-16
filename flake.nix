@@ -113,6 +113,17 @@
                 stylua init.lua lua after
                 ```
               '';
+              check = ''
+                ---description: Run all CI checks locally
+                Run the full CI verification suite: flake check, package build, git-hooks, and headless startup smoke test.
+
+                ```bash
+                nix flake check --impure
+                nix build .
+                nix develop --impure --command devenv test
+                nix develop --impure --command nvim --headless -c 'qa!'
+                ```
+              '';
             };
             opencode.agents = {
               reviewer = ''
@@ -142,6 +153,38 @@
                 - Use appropriate triggers (cmd/keys/ft/event/on_require/dep_of) for lazy loading
                 - Follow existing patterns in neighboring plugin files
                 - Keep style consistent with stylua formatting
+              '';
+            };
+            opencode.skills = {
+              add-plugin = ''
+                ---
+                name: add-plugin
+                description: Adds a new Neovim plugin correctly wired into both nix/plugins.nix and its lże spec. Use when asked to add a plugin.
+                ---
+                # Add a Neovim plugin
+
+                Every plugin requires TWO coordinated changes:
+
+                ## 1. nix/plugins.nix
+
+                - Add the plugin to `plugins.lazy.data` (or `startup` for auto-loaded plugins).
+                - Use the `vimPlugins.<name>` attr or an external `plugins-<name>` flake input (see `pluginsFromPrefix`).
+
+                ## 2. lże spec
+
+                - Create or edit the matching spec in `lua/myLuaConf/plugins/*.lua`.
+                - The spec `name` MUST be the pack directory name (e.g. `'mini.nvim'`), NOT the nixpkgs attr (`mini-nvim`). A mismatched name silently fails to load.
+                - Add appropriate triggers (`cmd`/`keys`/`ft`/`event`/`on_require`/`dep_of`) for lazy loading.
+                - Follow patterns in neighboring plugin files.
+
+                ## Runtime deps
+
+                LSP servers are declared in `lua/myLuaConf/LSPs/init.lua` specs; linters/formatters go in `nix/runtime.nix`.
+
+                ## Verify
+
+                - `git add` new files (nix build only includes git-tracked files).
+                - Run the `check` command: flake check, build, git-hooks, smoke test.
               '';
             };
             opencode.mcp = {
