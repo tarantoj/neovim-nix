@@ -23,7 +23,7 @@ jobs:
         uses: DeterminateSystems/determinate-nix-action@v3
 
       - name: Check flake
-        run: nix flake check
+        run: nix flake check --impure
 
       - name: Build package
         run: nix build .
@@ -32,7 +32,7 @@ jobs:
         run: nix fmt -- --check .
 
       - name: Format Lua files
-        run: nix develop --command stylua --check init.lua lua after
+        run: nix develop --impure --command stylua --check init.lua lua after
 
       - name: Headless startup smoke test
-        run: nix develop --command nvim --headless -c 'qa!'
+        run: nix develop --impure --command nvim --headless -c 'qa!'

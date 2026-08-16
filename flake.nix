@@ -1,5 +1,7 @@
 {
   description = "Configured Neovim package built with nix-wrapper-modules";
+  inputs.devenv.url = "github:cachix/devenv";
+  inputs.devenv.inputs.nixpkgs.follows = "nixpkgs";
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
   inputs.wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
   inputs.wrappers.inputs.nixpkgs.follows = "nixpkgs";
@@ -17,10 +19,15 @@
     url = "github:cedarbaum/fugitive-azure-devops.vim";
     flake = false;
   };
+  nixConfig = {
+    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    extra-substituters = "https://devenv.cachix.org";
+  };
   outputs = {
     self,
     nixpkgs,
     wrappers,
+    devenv,
     ...
   } @ inputs: let
     forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all;
@@ -53,15 +60,26 @@
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
     devShells = forAllSystems (system: let
       pkgs = nixpkgs.legacyPackages.${system};
+      neovim = self.packages.${system}.neovim;
     in {
-      default = pkgs.mkShell {
-        packages = with pkgs; [
-          alejandra
-          stylua
-          luajit
-          lua-language-server
-          nixd
-          self.packages.${system}.neovim
+      default = devenv.lib.mkShell {
+        inherit inputs pkgs;
+        modules = [
+          ({
+            pkgs,
+            config,
+            ...
+          }: {
+            packages = with pkgs;
+              [
+                alejandra
+                stylua
+                luajit
+                lua-language-server
+                nixd
+              ]
+              ++ [neovim];
+          })
         ];
       };
     });
