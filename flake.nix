@@ -145,15 +145,8 @@
               '';
             };
             opencode.mcp = {
-              devenv = {
-                type = "local";
-                command = [
-                  "devenv"
-                  "mcp"
-                ];
-                environment = {
-                  DEVENV_ROOT = "{env:DEVENV_ROOT}";
-                };
+              chrome-devtools = {
+                enabled = false;
               };
             };
             git-hooks.hooks = {
