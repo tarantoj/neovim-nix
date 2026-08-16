@@ -72,6 +72,86 @@
           }: {
             opencode.enable = true;
             opencode.rules = ./AGENTS.md;
+            opencode.settings = {
+              editor = "nvim";
+            };
+            opencode.commands = {
+              test = ''
+                ---description: Run the full test suite via git-hooks
+                Run `devenv test` (runs alejandra + stylua git-hooks on all files) and report any failures.
+
+                ```bash
+                devenv test
+                ```
+              '';
+              build = ''
+                ---description: Build the Neovim package
+                Build the flake package with `nix build .` and report any errors.
+
+                ```bash
+                nix build .
+                ```
+              '';
+              smoke = ''
+                ---description: Run the headless Neovim startup smoke test
+                Start the packaged Neovim headless and quit immediately to verify it loads without errors.
+
+                ```bash
+                nix develop --impure --command nvim --headless -c 'qa!'
+                ```
+              '';
+              fmt = ''
+                ---description: Format Nix and Lua files
+                Format all Nix files with `nix fmt` and Lua files with stylua, then report what changed.
+
+                ```bash
+                nix fmt .
+                stylua init.lua lua after
+                ```
+              '';
+            };
+            opencode.agents = {
+              reviewer = ''
+                ---description: Reviews Nix and Lua code for quality, correctness, and project conventions
+                mode: subagent
+                permission:
+                  edit: deny
+                  bash: deny
+                ---
+                You are an expert code reviewer for this Neovim config repo.
+                Focus on:
+                - Nix: module structure, plugin inventory consistency (nix/plugins.nix vs lua specs), runtime deps
+                - Lua: `lze` spec correctness, lazy-loading triggers, adherence to project conventions
+                - Whether new plugins are wired in BOTH nix/plugins.nix and the matching lua spec
+                - Formatting consistency (alejandra, stylua)
+                Provide constructive, specific feedback without making changes.
+              '';
+              lua-expert = ''
+                ---description: Writes and debugs Neovim Lua plugin configuration
+                mode: subagent
+                permission:
+                  bash: deny
+                ---
+                You are a Neovim Lua configuration specialist.
+                When writing or editing `lze` plugin specs in lua/myLuaConf/plugins/*.lua:
+                - Set the spec name to the pack directory name (e.g. 'mini.nvim'), NOT the nixpkgs attr
+                - Use appropriate triggers (cmd/keys/ft/event/on_require/dep_of) for lazy loading
+                - Follow existing patterns in neighboring plugin files
+                - Keep style consistent with stylua formatting
+              '';
+            };
+            opencode.mcp = {
+              devenv = {
+                type = "local";
+                command = [
+                  "devenv"
+                  "mcp"
+                ];
+                environment = {
+                  DEVENV_ROOT = "{env:DEVENV_ROOT}";
+                };
+              };
+            };
             git-hooks.hooks = {
               alejandra.enable = true;
               alejandra.settings.check = true;
@@ -89,6 +169,7 @@
                 luajit
                 lua-language-server
                 nixd
+                opencode
               ]
               ++ [neovim];
           })

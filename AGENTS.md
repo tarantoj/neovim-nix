@@ -26,7 +26,16 @@ nix develop --impure --command devenv test        # runs git-hooks (alejandra, s
 nix develop --impure --command nvim --headless -c 'qa!'  # startup smoke test
 ```
 
-CI (`.github/workflows/ci.yml`) runs all of the above on ubuntu-latest + macos-latest for every push/PR. The devshell (`nix develop --impure` / `.envrc` via direnv) provides alejandra, stylua, luajit, lua-language-server, nixd, and neovim.
+CI (`.github/workflows/ci.yml`) runs all of the above on ubuntu-latest + macos-latest for every push/PR. The devshell (`nix develop --impure` / `.envrc` via direnv) provides alejandra, stylua, luajit, lua-language-server, nixd, opencode, and neovim.
+
+## Automatic formatting
+
+After editing files, run the formatters before finishing (opencode runs these via the `/fmt` command):
+
+```bash
+nix fmt .                    # Nix files (alejandra)
+stylua init.lua lua after    # Lua files
+```
 
 ## Git hooks
 
