@@ -159,7 +159,7 @@
               add-plugin = ''
                 ---
                 name: add-plugin
-                description: Adds a new Neovim plugin correctly wired into both nix/plugins.nix and its lże spec. Use when asked to add a plugin.
+                description: Adds a new Neovim plugin correctly wired into both nix/plugins.nix and its lze spec. Use when asked to add a plugin.
                 ---
                 # Add a Neovim plugin
 
@@ -170,7 +170,7 @@
                 - Add the plugin to `plugins.lazy.data` (or `startup` for auto-loaded plugins).
                 - Use the `vimPlugins.<name>` attr or an external `plugins-<name>` flake input (see `pluginsFromPrefix`).
 
-                ## 2. lże spec
+                ## 2. lze spec
 
                 - Create or edit the matching spec in `lua/myLuaConf/plugins/*.lua`.
                 - The spec `name` MUST be the pack directory name (e.g. `'mini.nvim'`), NOT the nixpkgs attr (`mini-nvim`). A mismatched name silently fails to load.
