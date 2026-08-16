@@ -35,25 +35,8 @@ return {
             vim.keymap.set(mode, lhs, rhs, opts)
           end
 
-          map({ 'n', 'v' }, ']c', function()
-            if vim.wo.diff then
-              return ']c'
-            end
-            vim.schedule(function()
-              gs.next_hunk()
-            end)
-            return '<Ignore>'
-          end, { expr = true, desc = 'Jump to next hunk' })
-
-          map({ 'n', 'v' }, '[c', function()
-            if vim.wo.diff then
-              return '[c'
-            end
-            vim.schedule(function()
-              gs.prev_hunk()
-            end)
-            return '<Ignore>'
-          end, { expr = true, desc = 'Jump to previous hunk' })
+          -- NOTE: `[c`/`]c` hunk jumps removed; `[c`/`]c` is now
+          -- mini.bracketed's comment jump.
 
           map('v', '<leader>hs', function()
             gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') }

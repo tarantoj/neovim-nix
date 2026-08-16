@@ -19,6 +19,14 @@ return {
 
       require('mini.tabline').setup { show_icons = true, tabpage_section = 'right' }
 
+      require('mini.animate').setup()
+      require('mini.cursorword').setup { delay = 100 }
+      require('mini.move').setup()
+      require('mini.ai').setup {}
+      require('mini.bracketed').setup {}
+      require('mini.bufremove').setup {}
+      require('mini.misc').setup_restore_cursor()
+
       -- Treesitter-aware commentstring is handled natively by mini.comment.
       require('mini.comment').setup {}
       require('mini.indentscope').setup()
