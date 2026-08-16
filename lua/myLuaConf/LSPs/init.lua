@@ -133,6 +133,8 @@ require('lze').load {
   { 'html', lsp = {} },
   { 'cssls', lsp = {} },
   { 'cspell_ls', lsp = {} },
+  { 'clangd', lsp = {} },
+  { 'dts_lsp', lsp = {} },
   {
     'jsonls',
     lsp = {

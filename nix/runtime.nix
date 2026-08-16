@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   config.runtimePkgs = with pkgs; [
     universal-ctags
+    clang-tools
+    dts-lsp
     ripgrep
     fd
     tree-sitter
