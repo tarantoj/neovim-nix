@@ -13,9 +13,6 @@ return {
 
       local statusline = require('mini.statusline')
       statusline.setup { use_icons = true }
-      -- statusline.section_location = function()
-      --   return '%2l:%-2v'
-      -- end
 
       require('mini.tabline').setup { show_icons = true, tabpage_section = 'right' }
 
