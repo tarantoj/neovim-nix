@@ -19,6 +19,7 @@
     url = "github:cedarbaum/fugitive-azure-devops.vim";
     flake = false;
   };
+  inputs.llm-agents.url = "github:numtide/llm-agents.nix";
   nixConfig = {
     extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
     extra-substituters = "https://devenv.cachix.org";
@@ -59,7 +60,7 @@
     );
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
     devShells = forAllSystems (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = (nixpkgs.legacyPackages.${system}).extend inputs.llm-agents.overlays.shared-nixpkgs;
       neovim = self.packages.${system}.neovim;
     in {
       default = devenv.lib.mkShell {
@@ -166,7 +167,7 @@
                 luajit
                 lua-language-server
                 nixd
-                opencode
+                llm-agents.opencode
               ]
               ++ [neovim];
           })
