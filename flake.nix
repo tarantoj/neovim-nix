@@ -21,8 +21,14 @@
   };
   inputs.llm-agents.url = "github:numtide/llm-agents.nix";
   nixConfig = {
-    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
-    extra-substituters = "https://devenv.cachix.org";
+    extra-trusted-public-keys = [
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+    ];
+    extra-substituters = [
+      "https://devenv.cachix.org"
+      "https://cache.numtide.com"
+    ];
   };
   outputs = {
     self,
