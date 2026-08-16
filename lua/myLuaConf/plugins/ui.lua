@@ -77,10 +77,12 @@ return {
         { '<leader>r_', hidden = true },
         { '<leader>s', group = '[s]earch' },
         { '<leader>s_', hidden = true },
-        { '<leader>t', group = '[t]oggles' },
+        { '<leader>t', group = '[t]est' },
         { '<leader>t_', hidden = true },
         { '<leader>w', group = '[w]orkspace' },
         { '<leader>w_', hidden = true },
+        { '<leader>x', group = '[x]trouble' },
+        { '<leader>x_', hidden = true },
       }
     end,
   },
