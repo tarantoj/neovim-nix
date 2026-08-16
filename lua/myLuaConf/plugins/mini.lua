@@ -12,10 +12,12 @@ return {
       MiniIcons.mock_nvim_web_devicons()
 
       local statusline = require('mini.statusline')
-      statusline.setup { use_icons = false }
+      statusline.setup { use_icons = true }
       statusline.section_location = function()
         return '%2l:%-2v'
       end
+
+      require('mini.tabline').setup { show_icons = true, tabpage_section = 'right' }
 
       -- Treesitter-aware commentstring is handled natively by mini.comment.
       require('mini.comment').setup {}
