@@ -20,14 +20,17 @@ Runtime deps (linters/formatters/LSP servers) must be added to `nix/runtime.nix`
 ## Verification (also what CI runs)
 
 ```bash
-nix flake check
+nix flake check --impure
 nix build .
-nix fmt -- --check .                       # nix formatting (uses flake formatter)
-nix develop --command stylua --check init.lua lua after   # lua formatting
-nix develop --command nvim --headless -c 'qa!'  # startup smoke test
+nix develop --impure --command devenv test        # runs git-hooks (alejandra, stylua) on all files
+nix develop --impure --command nvim --headless -c 'qa!'  # startup smoke test
 ```
 
-CI (`.github/workflows/ci.yml`) runs all of the above on ubuntu-latest + macos-latest for every push/PR. The devshell (`nix develop` / `.envrc` via direnv) provides alejandra, stylua, luajit, lua-language-server, nixd, and neovim.
+CI (`.github/workflows/ci.yml`) runs all of the above on ubuntu-latest + macos-latest for every push/PR. The devshell (`nix develop --impure` / `.envrc` via direnv) provides alejandra, stylua, luajit, lua-language-server, nixd, and neovim.
+
+## Git hooks
+
+Formatting is enforced via devenv git-hooks (`git-hooks.hooks` in `flake.nix`): alejandra (nix, `--check`) and stylua (lua). The hook config is written to `.pre-commit-config.yaml` on shell entry and installed as a `pre-commit` git hook. Run manually with `devenv test` or `prek run --all-files`.
 
 ## Gotchas
 

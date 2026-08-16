@@ -70,6 +70,18 @@
             config,
             ...
           }: {
+            opencode.enable = true;
+            opencode.rules = ./AGENTS.md;
+            git-hooks.hooks = {
+              alejandra.enable = true;
+              alejandra.settings.check = true;
+              stylua = {
+                enable = true;
+                name = "stylua";
+                entry = "stylua --check";
+                files = "\\.lua$";
+              };
+            };
             packages = with pkgs;
               [
                 alejandra

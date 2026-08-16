@@ -28,11 +28,8 @@ jobs:
       - name: Build package
         run: nix build .
 
-      - name: Format Nix files
-        run: nix fmt -- --check .
-
-      - name: Format Lua files
-        run: nix develop --impure --command stylua --check init.lua lua after
+      - name: Run git-hooks (alejandra, stylua)
+        run: nix develop --impure --command devenv test
 
       - name: Headless startup smoke test
         run: nix develop --impure --command nvim --headless -c 'qa!'
