@@ -72,9 +72,6 @@
           }: {
             opencode.enable = true;
             opencode.rules = ./AGENTS.md;
-            opencode.settings = {
-              editor = "nvim";
-            };
             opencode.commands = {
               test = ''
                 ---description: Run the full test suite via git-hooks
