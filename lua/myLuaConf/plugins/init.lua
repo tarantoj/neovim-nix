@@ -1,4 +1,4 @@
-require('tokyonight').setup { style = 'night' }
+require('tokyonight').setup { style = 'night', light_style = 'storm' }
 local nixInfo = require('nixInfoUtils')
 local colorschemeName = nixInfo.value('tokyonight', 'settings', 'colorscheme')
 
