@@ -173,7 +173,7 @@ require('lze').load {
     },
   },
   { 'devenv', lsp = { cmd = { 'devenv', 'lsp' }, filetypes = { 'nix' }, root_markers = { 'devenv.nix' } } },
-  { 'cucumber_language_server', lsp = {} },
+  -- { 'cucumber_language_server', lsp = {} },
   { 'statix', lsp = {} },
   {
     'nixd',
