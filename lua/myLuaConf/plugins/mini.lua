@@ -18,7 +18,12 @@ return {
 
       require('mini.cursorword').setup { delay = 100 }
       require('mini.move').setup()
-      require('mini.ai').setup {}
+      require('mini.ai').setup {
+        mappings = {
+          around_next = 'aN',
+          inside_next = 'iN',
+        },
+      }
       require('mini.bracketed').setup {}
       require('mini.bufremove').setup {}
       require('mini.misc').setup_restore_cursor()
