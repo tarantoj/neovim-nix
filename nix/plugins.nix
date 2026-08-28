@@ -68,12 +68,8 @@ in {
         vimPlugins.neotest
         vimPlugins.neotest-vitest
         vimPlugins.neotest-jest
-        vimPlugins.avante-nvim
+        vimPlugins.codecompanion-nvim
         vimPlugins.copilot-lua
-        vimPlugins.img-clip-nvim
-        vimPlugins.render-markdown-nvim
-        vimPlugins.dressing-nvim
-        vimPlugins.nui-nvim
         vimPlugins.telescope-nvim
         vimPlugins.telescope-fzf-native-nvim
         vimPlugins.telescope-ui-select-nvim

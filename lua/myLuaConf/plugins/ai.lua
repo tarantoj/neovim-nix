@@ -1,18 +1,34 @@
 return {
   {
-    'avante.nvim',
+    'codecompanion.nvim',
     auto_enable = true,
     cmd = {
-      'AvanteAsk',
-      'AvanteChat',
-      'AvanteEdit',
-      'AvanteFocus',
-      'AvanteSwitchProvider',
-      'AvanteShowRepoMap',
-      'AvanteToggle',
+      'CodeCompanion',
+      'CodeCompanionChat',
+      'CodeCompanionActions',
+      'CodeCompanionInline',
+    },
+    keys = {
+      { '<leader>a', '<cmd>CodeCompanionChat Toggle<CR>', desc = 'Toggle CodeCompanion chat' },
     },
     after = function()
-      require('avante').setup { provider = 'copilot' }
+      require('codecompanion').setup {
+        adapters = {
+          acp = {
+            opts = {
+              show_presets = false,
+            },
+            opencode = function()
+              return require('codecompanion.adapters').extend('opencode', {})
+            end,
+          },
+        },
+        interactions = {
+          chat = {
+            adapter = 'opencode',
+          },
+        },
+      }
     end,
   },
   {
@@ -22,14 +38,5 @@ return {
     after = function()
       require('copilot').setup {}
     end,
-    dep_of = 'avante.nvim',
   },
-  { 'img-clip.nvim', auto_enable = true, dep_of = 'avante.nvim' },
-  {
-    'render-markdown-nvim',
-    auto_enable = true,
-    dep_of = 'avante.nvim',
-  },
-  { 'dressing-nvim', auto_enable = true, dep_of = 'avante.nvim' },
-  { 'nui.nvim', auto_enable = true, dep_of = 'avante.nvim' },
 }
