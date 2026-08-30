@@ -134,6 +134,12 @@ require('lze').load {
   { 'cssls', lsp = {} },
   { 'cspell_ls', lsp = {} },
   { 'clangd', lsp = {} },
+  {
+    'sourcekit',
+    lsp = {
+      filetypes = { 'swift', 'objc', 'objcpp' },
+    },
+  },
   { 'dts_lsp', lsp = {} },
   {
     'jsonls',

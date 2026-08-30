@@ -18,6 +18,7 @@
   config.runtimePkgs = with pkgs; [
     universal-ctags
     clang-tools
+    sourcekit-lsp
     dts-lsp
     ripgrep
     fd
