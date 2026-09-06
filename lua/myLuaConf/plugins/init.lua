@@ -61,4 +61,5 @@ require('lze').load {
   { import = 'myLuaConf.plugins.mini' },
   { import = 'myLuaConf.plugins.statusline' },
   { import = 'myLuaConf.plugins.utility' },
+  { import = 'myLuaConf.plugins.rust' },
 }

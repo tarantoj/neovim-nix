@@ -64,5 +64,8 @@
     csharpier
     prettierd
     sqlfluff
+    rust-analyzer
+    cargo-nextest
+    vscode-extensions.vadimcn.vscode-lldb.adapter
   ];
 }

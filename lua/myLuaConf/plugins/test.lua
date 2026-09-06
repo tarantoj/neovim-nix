@@ -13,6 +13,7 @@ return {
             end,
           },
           require('neotest-jest') {},
+          require('rustaceanvim.neotest'),
         },
         status = { virtual_text = true },
         output = { open_on_run = true },

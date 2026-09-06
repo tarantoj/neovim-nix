@@ -134,6 +134,9 @@ require('lze').load {
   { 'cssls', lsp = {} },
   { 'cspell_ls', lsp = {} },
   { 'clangd', lsp = {} },
+  -- NOTE: rust-analyzer is intentionally NOT configured here.
+  -- rustaceanvim (see lua/myLuaConf/plugins/rust.lua) manages its own
+  -- rust-analyzer client; adding a lspconfig spec here would conflict.
   {
     'sourcekit',
     lsp = {

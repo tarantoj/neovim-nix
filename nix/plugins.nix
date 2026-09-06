@@ -85,6 +85,8 @@ in {
         vimPlugins.vim-rhubarb
         externalPlugins.fugitive-azure-devops
         vimPlugins.roslyn-nvim
+        vimPlugins.rustaceanvim
+        vimPlugins.crates-nvim
       ];
     };
   };
