@@ -49,7 +49,6 @@
     tflint-plugins.tflint-ruleset-google
     typescript
     typescript-language-server
-    typescript-go
     vtsls
     eslint
     tailwindcss-language-server

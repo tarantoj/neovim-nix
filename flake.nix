@@ -2,7 +2,7 @@
   description = "Configured Neovim package built with nix-wrapper-modules";
   inputs.devenv.url = "github:cachix/devenv";
   inputs.devenv.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   inputs.wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
   inputs.wrappers.inputs.nixpkgs.follows = "nixpkgs";
   # Keep these plugins independent from the nixpkgs update cycle.
@@ -20,6 +20,7 @@
     flake = false;
   };
   inputs.llm-agents.url = "github:numtide/llm-agents.nix";
+  inputs.llm-agents.inputs.nixpkgs.follows = "nixpkgs";
   nixConfig = {
     extra-trusted-public-keys = [
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
