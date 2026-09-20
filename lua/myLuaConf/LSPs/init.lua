@@ -90,39 +90,6 @@ require('lze').load {
     -- if you don't provide the filetypes it asks lspconfig for them
     lsp = {},
   },
-  { 'roslyn_ls', lsp = {} },
-  -- {
-  --   'vtsls',
-  --   lsp = {
-  --     settings = {
-  --       complete_function_calls = true,
-  --       vtsls = {
-  --         enableMoveToFileCodeAction = true,
-  --         autoUseWorkspaceTsdk = true,
-  --         experimental = {
-  --           maxInlayHintLength = 30,
-  --           completion = {
-  --             enableServerSideFuzzyMatch = true,
-  --           },
-  --         },
-  --       },
-  --       typescript = {
-  --         updateImportsOnFileMove = { enabled = 'always' },
-  --         suggest = {
-  --           completeFunctionCalls = true,
-  --         },
-  --         inlayHints = {
-  --           enumMemberValues = { enabled = true },
-  --           functionLikeReturnTypes = { enabled = true },
-  --           parameterNames = { enabled = 'literals' },
-  --           parameterTypes = { enabled = true },
-  --           propertyDeclarationTypes = { enabled = true },
-  --           variableTypes = { enabled = false },
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
   { 'tsgo', lsp = {} },
   { 'tailwindcss', lsp = {} },
   { 'biome', lsp = {} },
@@ -137,6 +104,7 @@ require('lze').load {
   -- NOTE: rust-analyzer is intentionally NOT configured here.
   -- rustaceanvim (see lua/myLuaConf/plugins/rust.lua) manages its own
   -- rust-analyzer client; adding a lspconfig spec here would conflict.
+  -- Same for roslyn_ls: roslyn-nvim below manages its own client.
   {
     'sourcekit',
     lsp = {

@@ -34,22 +34,17 @@
     actionlint
     cspell
     nixd
-    nixfmt
     lua-language-server
     stylua
     templ
     lazygit
     gopls
-    gotools
-    go-tools
     basedpyright
     terraform-ls
     tflint
     tflint-plugins.tflint-ruleset-aws
     tflint-plugins.tflint-ruleset-google
     typescript
-    typescript-language-server
-    vtsls
     eslint
     tailwindcss-language-server
     biome
