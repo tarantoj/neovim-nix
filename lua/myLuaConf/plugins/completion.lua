@@ -54,12 +54,6 @@ return {
     event = 'DeferredUIEnter',
     dep_of = 'nvim-lspconfig',
     after = function(_)
-      local ts_trigger_chars = {
-        [':'] = true,
-        ['!'] = true,
-        ['\\'] = true,
-      }
-
       require('blink.cmp').setup {
         -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
         -- See :h blink-cmp-config-keymap for configuring keymaps
@@ -143,24 +137,6 @@ return {
             },
             lsp = {
               score_offset = 40,
-              override = {
-                get_trigger_characters = function(self)
-                  local trigger_characters = self:get_trigger_characters()
-
-                  if
-                    vim.tbl_contains(
-                      { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
-                      vim.bo.filetype
-                    )
-                  then
-                    return vim.tbl_filter(function(char)
-                      return not ts_trigger_chars[char]
-                    end, trigger_characters)
-                  end
-
-                  return trigger_characters
-                end,
-              },
             },
             snippets = {
               score_offset = 40,
