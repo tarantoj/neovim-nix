@@ -90,7 +90,7 @@ require('lze').load {
     -- if you don't provide the filetypes it asks lspconfig for them
     lsp = {},
   },
-  { 'tsgo', lsp = {} },
+  { 'tsc', lsp = {} },
   { 'tailwindcss', lsp = {} },
   { 'biome', lsp = {} },
   { 'basedpyright', lsp = {} },
