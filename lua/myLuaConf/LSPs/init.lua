@@ -96,7 +96,7 @@ require('lze').load {
       cmd = { 'tsc', '--lsp', '--stdio' },
     },
   },
-  { 'tailwindcss', lsp = {} },
+  -- { 'tailwindcss', lsp = {} },
   { 'biome', lsp = {} },
   { 'basedpyright', lsp = {} },
   { 'terraformls', lsp = {} },
