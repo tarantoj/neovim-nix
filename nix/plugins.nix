@@ -50,7 +50,7 @@ in {
         vimPlugins.nvim-ts-autotag
         vimPlugins.nvim-bqf
         vimPlugins.vim-startuptime
-        vimPlugins.blink-cmp
+        externalPlugins.blink-cmp
         vimPlugins.blink-compat
         vimPlugins.cmp-cmdline
         vimPlugins.colorful-menu-nvim
