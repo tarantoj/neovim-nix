@@ -7,7 +7,7 @@ return {
   {
     'cmp-cmdline',
     auto_enable = true,
-    on_plugin = { 'blink.cmp' },
+    on_plugin = { 'blink-cmp' },
     load = load_w_after,
   },
   {
@@ -18,12 +18,12 @@ return {
   {
     'friendly-snippets',
     auto_enable = true,
-    dep_of = { 'blink.cmp' },
+    dep_of = { 'blink-cmp' },
   },
   {
     'luasnip',
     auto_enable = true,
-    dep_of = { 'blink.cmp' },
+    dep_of = { 'blink-cmp' },
     after = function(_)
       local luasnip = require('luasnip')
       require('luasnip.loaders.from_vscode').lazy_load()
@@ -41,15 +41,15 @@ return {
   {
     'colorful-menu.nvim',
     auto_enable = true,
-    on_plugin = { 'blink.cmp' },
+    on_plugin = { 'blink-cmp' },
   },
   {
     'blink-cmp-git',
     auto_enable = true,
-    on_plugin = { 'blink.cmp' },
+    on_plugin = { 'blink-cmp' },
   },
   {
-    'blink.cmp',
+    'blink-cmp',
     auto_enable = true,
     event = 'DeferredUIEnter',
     dep_of = 'nvim-lspconfig',
