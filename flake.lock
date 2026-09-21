@@ -319,22 +319,6 @@
         "type": "github"
       }
     },
-    "plugins-blink-cmp": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1789947894,
-        "narHash": "sha256-q45b6kcK/Ld2geQuYN78HVoXJ+bQM7ufWlB/z6ORz0Q=",
-        "owner": "Saghen",
-        "repo": "blink.cmp",
-        "rev": "8219b58f1c11a2fb1644d3c7116c509fa8348ec0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Saghen",
-        "repo": "blink.cmp",
-        "type": "github"
-      }
-    },
     "plugins-fugitive-azure-devops": {
       "flake": false,
       "locked": {
@@ -388,7 +372,6 @@
         "devenv": "devenv",
         "llm-agents": "llm-agents",
         "nixpkgs": "nixpkgs",
-        "plugins-blink-cmp": "plugins-blink-cmp",
         "plugins-fugitive-azure-devops": "plugins-fugitive-azure-devops",
         "plugins-lze": "plugins-lze",
         "plugins-lzextras": "plugins-lzextras",

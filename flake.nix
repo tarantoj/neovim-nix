@@ -19,10 +19,6 @@
     url = "github:cedarbaum/fugitive-azure-devops.vim";
     flake = false;
   };
-  inputs.plugins-blink-cmp = {
-    url = "github:Saghen/blink.cmp";
-    flake = false;
-  };
   inputs.llm-agents.url = "github:numtide/llm-agents.nix";
   inputs.llm-agents.inputs.nixpkgs.follows = "nixpkgs";
   nixConfig = {
