@@ -5,13 +5,7 @@
   inputs,
   ...
 }: let
-  vimPlugins =
-    pkgs.vimPlugins
-    // {
-      blink-cmp = pkgs.vimPlugins.blink-cmp.overrideAttrs (old: {
-        patches = (old.patches or []) ++ [../blink-cmp-trigger-routing.patch];
-      });
-    };
+  inherit (pkgs) vimPlugins;
   externalPlugins = config.nvim-lib.pluginsFromPrefix "plugins-" inputs;
 in {
   options.nvim-lib.pluginsFromPrefix = lib.mkOption {
