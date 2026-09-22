@@ -14,6 +14,7 @@
     settings.config_directory = ../.;
     settings.colorscheme = "tokyonight";
     settings.block_normal_config = true;
+    settings.typescript_tsc_path = "${pkgs.typescript}/bin/tsc";
 
     info.nixdExtras.nixpkgs = ''import ${pkgs.path} {}'';
     info.nixdExtras.nixos_options = null;

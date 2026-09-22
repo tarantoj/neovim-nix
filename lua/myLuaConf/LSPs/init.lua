@@ -93,7 +93,7 @@ require('lze').load {
   {
     'tsgo',
     lsp = {
-      cmd = { 'tsc', '--lsp', '--stdio' },
+      cmd = { nixInfo.value('tsc', 'settings', 'typescript_tsc_path'), '--lsp', '--stdio' },
     },
   },
   -- { 'tailwindcss', lsp = {} },
