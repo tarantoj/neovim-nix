@@ -96,7 +96,7 @@ require('lze').load {
       cmd = { nixInfo.value('tsc', 'settings', 'typescript_tsc_path'), '--lsp', '--stdio' },
     },
   },
-  -- { 'tailwindcss', lsp = {} },
+  { 'tailwindcss', lsp = {} },
   { 'biome', lsp = {} },
   { 'basedpyright', lsp = {} },
   { 'terraformls', lsp = {} },
