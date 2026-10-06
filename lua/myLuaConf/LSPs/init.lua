@@ -92,9 +92,9 @@ require('lze').load {
   },
   {
     'tsc',
-    -- lsp = {
-    --   cmd = { nixInfo.value('tsc', 'settings', 'typescript_tsc_path'), '--lsp', '--stdio' },
-    -- },
+    lsp = {
+      --   cmd = { nixInfo.value('tsc', 'settings', 'typescript_tsc_path'), '--lsp', '--stdio' },
+    },
   },
   { 'tailwindcss', lsp = {} },
   { 'biome', lsp = {} },
