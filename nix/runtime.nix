@@ -45,7 +45,6 @@
     tflint-plugins.tflint-ruleset-aws
     tflint-plugins.tflint-ruleset-google
     typescript
-    vtsls
     eslint
     tailwindcss-language-server
     biome

@@ -2,69 +2,18 @@ local nixInfo = require('nixInfoUtils')
 if nixInfo.value(false, 'settings', 'lspDebugMode') then
   vim.lsp.log.set_level(vim.log.levels.DEBUG)
 end
-local function get_lspconfig_definition(name)
+require('lze').h.lsp.set_ft_fallback(function(name)
   local lspcfg = nixInfo.plugin_path('nvim-lspconfig')
   if not lspcfg then
     local matches = vim.api.nvim_get_runtime_file('pack/*/{start,opt}/nvim-lspconfig', false)
-    lspcfg = matches[1]
+    lspcfg = assert(matches[1], 'nvim-lspconfig not found!')
   end
-  if not lspcfg then
-    return nil
-  end
-
   local ok, cfg = pcall(dofile, lspcfg .. '/lsp/' .. name .. '.lua')
   if not ok then
     ok, cfg = pcall(dofile, lspcfg .. '/lua/lspconfig/configs/' .. name .. '.lua')
   end
-
-  return ok and cfg or nil
-end
-
-require('lze').h.lsp.set_ft_fallback(function(name)
-  return (get_lspconfig_definition(name) or {}).filetypes or {}
+  return (ok and cfg or {}).filetypes or {}
 end)
-
-local tsc_cmd = nixInfo.value('tsc', 'settings', 'typescript_tsc_path')
-local use_tsc = get_lspconfig_definition('tsc') ~= nil and vim.fn.executable(tsc_cmd) == 1
-
-local ts_lsp = use_tsc and {
-  'tsc',
-  lsp = {
-    cmd = { tsc_cmd, '--lsp', '--stdio' },
-  },
-} or {
-  'vtsls',
-  lsp = {
-    settings = {
-      complete_function_calls = true,
-      vtsls = {
-        enableMoveToFileCodeAction = true,
-        autoUseWorkspaceTsdk = true,
-        experimental = {
-          maxInlayHintLength = 30,
-          completion = {
-            enableServerSideFuzzyMatch = true,
-          },
-        },
-      },
-      typescript = {
-        updateImportsOnFileMove = { enabled = 'always' },
-        suggest = {
-          completeFunctionCalls = true,
-        },
-        inlayHints = {
-          enumMemberValues = { enabled = true },
-          functionLikeReturnTypes = { enabled = true },
-          parameterNames = { enabled = 'literals' },
-          parameterTypes = { enabled = true },
-          propertyDeclarationTypes = { enabled = true },
-          variableTypes = { enabled = false },
-        },
-      },
-    },
-  },
-}
-
 -- file uses lzextras.lsp handler
 require('lze').load {
   {
@@ -141,7 +90,12 @@ require('lze').load {
     -- if you don't provide the filetypes it asks lspconfig for them
     lsp = {},
   },
-  ts_lsp,
+  {
+    'tsc',
+    lsp = {
+      --   cmd = { nixInfo.value('tsc', 'settings', 'typescript_tsc_path'), '--lsp', '--stdio' },
+    },
+  },
   { 'tailwindcss', lsp = {} },
   { 'biome', lsp = {} },
   { 'basedpyright', lsp = {} },
