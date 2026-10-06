@@ -92,6 +92,7 @@ require('lze').load {
   },
   {
     'tsc',
+    auto_enable = 'nvim-lspconfig',
     lsp = {
       --   cmd = { nixInfo.value('tsc', 'settings', 'typescript_tsc_path'), '--lsp', '--stdio' },
     },
