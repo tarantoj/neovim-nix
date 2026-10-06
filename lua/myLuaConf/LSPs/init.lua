@@ -14,6 +14,13 @@ require('lze').h.lsp.set_ft_fallback(function(name)
   end
   return (ok and cfg or {}).filetypes or {}
 end)
+
+local function stop_client_on_buffer(bufnr, client_name)
+  for _, client in ipairs(vim.lsp.get_clients { bufnr = bufnr, name = client_name }) do
+    client.stop()
+  end
+end
+
 -- file uses lzextras.lsp handler
 require('lze').load {
   {
@@ -35,7 +42,18 @@ require('lze').load {
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
         callback = function(ev)
-          require('myLuaConf.LSPs.on_attach')(vim.lsp.get_client_by_id(ev.data.client_id), ev.buf)
+          local client = vim.lsp.get_client_by_id(ev.data.client_id)
+          require('myLuaConf.LSPs.on_attach')(client, ev.buf)
+
+          if not client then
+            return
+          end
+
+          if client.name == 'tsc' then
+            stop_client_on_buffer(ev.buf, 'vtsls')
+          elseif client.name == 'vtsls' and #vim.lsp.get_clients { bufnr = ev.buf, name = 'tsc' } > 0 then
+            client.stop()
+          end
         end,
       })
       -- vim.lsp.config('*', {
@@ -97,6 +115,7 @@ require('lze').load {
       --   cmd = { nixInfo.value('tsc', 'settings', 'typescript_tsc_path'), '--lsp', '--stdio' },
     },
   },
+  { 'vtsls', lsp = {} },
   { 'tailwindcss', lsp = {} },
   { 'biome', lsp = {} },
   { 'basedpyright', lsp = {} },
