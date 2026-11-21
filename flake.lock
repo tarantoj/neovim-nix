@@ -304,11 +304,11 @@
     "plugins-lze": {
       "flake": false,
       "locked": {
-        "lastModified": 1793037304,
-        "narHash": "sha256-7nuKCF3hWKgRftkZL96IZuYd8TJDjZK0Vf+JG+iaAAI=",
+        "lastModified": 1794827322,
+        "narHash": "sha256-qzsXHj2UYZgdQ50n5mB8AHOPSPiFoaORO2g080GJ2dE=",
         "owner": "BirdeeHub",
         "repo": "lze",
-        "rev": "5020f28b13055a9cb3f51ab8b2cfefcd069dd3f7",
+        "rev": "718c021653fe02b5605f3d9ee2f45634ccc002a6",
         "type": "github"
       },
       "original": {
